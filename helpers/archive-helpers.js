@@ -32,9 +32,24 @@ exports.readListOfUrls = function(callback) {
 };
 
 exports.isUrlInList = function(url, callback) {
+  fs.readFile('/Users/student/code/hrsf77-web-historian/archives/sites.txt', function(err, data) {
+    callback(data.toString().includes(url));    
+  });
 };
 
 exports.addUrlToList = function(url, callback) {
+  fs.readFile('/Users/student/code/hrsf77-web-historian/archives/sites.txt', function(err, data) {
+    var array = data.toString().trim().split('\n');
+    if (!(array.indexOf(url) !== -1)) {
+      fs.writeFile('/Users/student/code/hrsf77-web-historian/archives/sites.txt', url, function(err) {
+        if (err) {
+          return console.error(err);
+        }
+      });
+    }
+    callback();
+  });
+
 };
 
 exports.isUrlArchived = function(url, callback) {
