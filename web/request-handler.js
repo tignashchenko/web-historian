@@ -5,9 +5,14 @@ var fs = require('fs');
 
 exports.handleRequest = function (req, res) {
   if (req.method === 'GET' && req.url === '/') {
-    fs.readFile(__dirname + '/public/index.html', function(err, data) {
+    fs.readFile('/Users/student/code/hrsf77-web-historian/web/public/index.html', function(err, data) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(data);
     });
   }
 };
+
+
+// '/Users/student/code/hrsf77-web-historian/web/public/index.html'
+
+// __dirname + '/public/index.html'
